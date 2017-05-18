@@ -1,11 +1,7 @@
-﻿using AttendanceSystem_Windows.HttpConnection;
-using AttendanceSystem_Windows.LocalData;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,12 +15,20 @@ using System.Windows.Shapes;
 
 namespace AttendanceSystem_Windows {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// NavigatorPage.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window {
-        public  MainWindow() {
+    public partial class NavigatorPage : Page {
+        public static NavigatorPage Get() => reference == null ? reference = new NavigatorPage() : reference;
+        private static NavigatorPage reference = null;
+
+        private NavigatorPage() {
             InitializeComponent();
-            Navigator.Navigate(LoginPage.Get());
+            //var x = new Button();
+            
+        }
+
+        private void OptionBtn_Click(object sender, RoutedEventArgs e) {
+            OptionMenu.IsOpen = true;
         }
     }
 }
