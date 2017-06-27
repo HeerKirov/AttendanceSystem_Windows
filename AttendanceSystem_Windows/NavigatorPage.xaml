@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AttendanceSystem_Windows"
+      xmlns:utils="clr-namespace:AttendanceSystem_Windows.PageFolder.Utils"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="900"
       Title="NavigatorPage">
@@ -45,14 +46,21 @@
             <Setter Property="Margin" Value="4"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
+        <Style x:Key="FunctionMenuButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FFDFF0F5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0,1"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
         <Style x:Key="NavigateListButton" TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Background" Value="LightGray"/>
         </Style>
+        <Button x:Key="NavigatorListButtonResource" Content="  页面1  " Style="{StaticResource NavigateListButton}"/>
     </Page.Resources>
 
-    <Grid Background="White">
+    <Grid Name="RootGrid" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
@@ -68,34 +76,35 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Expander Header="- 职能 -" IsExpanded="True"
+            <Expander  Name="CharacterHeader" Header="- 职能 -" IsExpanded="True"
                       Padding="5"
                       Grid.Row="0">
-                <StackPanel VerticalAlignment="Top">
-                    <Button Content="学生" Style="{StaticResource CharacterListButton}"/>
-                    <Button Content="教师" Style="{StaticResource CharacterListButton}"/>
-                    <Button Content="辅导员" Style="{StaticResource CharacterListButton}"/>
-                    <Button Content="教务处" Style="{StaticResource CharacterListButton}"/>
-                    <Button Content="管理员" Style="{StaticResource CharacterListButton}"/>
+                <StackPanel Name="CharacterStackPanel" VerticalAlignment="Top">
+                    <Button Name="Character_Student_Btn" Content="学生" Style="{StaticResource CharacterListButton}"/>
+                    <Button Name="Character_Teacher_Btn" Content="教师" Style="{StaticResource CharacterListButton}"/>
+                    <Button Name="Character_Instructor_Btn" Content="辅导员" Style="{StaticResource CharacterListButton}"/>
+                    <Button Name="Character_Office_Btn" Content="教务处" Style="{StaticResource CharacterListButton}"/>
+                    <Button Name="Character_Admin_Btn" Content="管理员" Style="{StaticResource CharacterListButton}"/>
                 </StackPanel>
             </Expander>
             
-            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <StackPanel>
-                    <Button Content="功能1" Style="{StaticResource FunctionListButton}"/>
-                    <Button Content="功能2" Style="{StaticResource FunctionListButton}"/>
+            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden"  HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Name="FunctionStackPanel">
+                    
                 </StackPanel>
             </ScrollViewer>
-            <Button Name="OptionBtn" Content="选项" Style="{StaticResource FunctionListButton}"
-                    Grid.Row="3" Click="OptionBtn_Click">
-                <Button.ContextMenu>
-                    <ContextMenu Name="OptionMenu">
-                        <MenuItem Name="Option_Password" Header="安全设置"/>
-                        <MenuItem Name="Option_Logout" Header="切换用户"/>
-                        <MenuItem Name="Option_Exit" Header="退出"/>
-                    </ContextMenu>
-                </Button.ContextMenu>
+            <StackPanel Name="OptionMenu" Grid.Row="3"  Visibility="Collapsed">
+                <Button Name="Func_Schedule" Style="{StaticResource FunctionMenuButton}" Click="Func_Schedule_Click">系统时间表</Button>
+                <Button Name="Func_Classrooms" Style="{StaticResource FunctionMenuButton}">查询教室列表</Button>
+                <Separator Background="LightBlue"/>
+                <Button Name="Func_Safety" Style="{StaticResource FunctionMenuButton}">安全设置</Button>
+                <Button Name="Func_ChangeUser" Style="{StaticResource FunctionMenuButton}">切换用户</Button>
+                <Button Name="Func_Exit" Style="{StaticResource FunctionMenuButton}">退出</Button>
+            </StackPanel>
+            <Button Name="OptionBtn" Content="功能" Style="{StaticResource FunctionListButton}"
+                    Grid.Row="4" Click="OptionBtn_Click">
             </Button>
             <Separator Grid.Row="1" HorizontalAlignment="Stretch" 
                        Background="#FF4BABCB" Margin="5,0"/>
@@ -106,28 +115,31 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Width="50" Height="50"
+            <Button Name="NavigatorBackBtn" Width="50" Height="50"
                     FontFamily="Segoe MDL2 Assets" Content="&#xE00E;"
-                    BorderThickness="0"
+                    BorderThickness="0" Background="LightGray"
                    Grid.Column="0" />
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
                           Grid.Column="1">
-                <StackPanel Orientation="Horizontal"
+                <StackPanel Name="NavigatorBar" Orientation="Horizontal"
                             HorizontalAlignment="Left">
-                    <Button Content="  页面1  " Style="{StaticResource NavigateListButton}"/>
-                    <Button Content="  页面2  " Style="{StaticResource NavigateListButton}"/>
-                    <Button Content="  页面3  " Style="{StaticResource NavigateListButton}"/>
-                    <Button Content="  页面4  " Style="{StaticResource NavigateListButton}"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <Grid Name="WelcomeBG"
-              Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Welcome" FontSize="24" Foreground="Gray"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
         <Frame Name="Navigator"
-               Grid.Row="1" Grid.Column="1"/>
-        
+               Grid.Row="1" Grid.Column="1">
+        </Frame>
+        <Grid Grid.Row="1" Grid.Column="1" Height="30"
+              HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+              Name="Progress" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ProgressBar IsIndeterminate="True" 
+                         Margin="5"/>
+        </Grid>
+        <Grid Name="MsgBoxGrid" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
     </Grid>
 </Page>

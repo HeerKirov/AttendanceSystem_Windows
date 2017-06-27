@@ -22,9 +22,18 @@ namespace AttendanceSystem_Windows {
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
     public partial class MainWindow : Window {
+        public static MainWindow reference { get; private set; }
         public  MainWindow() {
             InitializeComponent();
+            reference = this;
             Navigator.Navigate(LoginPage.Get());
+        }
+        /// <summary>
+        /// 给出次级标题，并设置窗口标题。
+        /// </summary>
+        /// <param name="subtitle"></param>
+        public void setTitle(string subtitle) {
+            Title = "Attendance System Development0.001" + (subtitle != null ? " - " : "") + subtitle;
         }
     }
 }

@@ -1,0 +1,57 @@
+﻿<base:BasePage x:Class="AttendanceSystem_Windows.PageFolder.Admin.root_auth"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AttendanceSystem_Windows.PageFolder.Admin"
+      xmlns:base="clr-namespace:AttendanceSystem_Windows.PageFolder"
+      xmlns:utils="clr-namespace:AttendanceSystem_Windows.PageFolder.Utils"
+      mc:Ignorable="d" Background="White"
+      d:DesignHeight="480" d:DesignWidth="640"
+      Title="ROOT级权限控制">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Name="CaptionText" Text="ROOT级权限控制" Grid.ColumnSpan="2"
+                   FontSize="24" Margin="15"/>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="45,45,45,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <utils:HeaderSuperText x:Name="UserText"
+                               Header="要查阅的用户" Editable="Writeonly"/>
+            <Button Name="SubmitQuery" Content="查询" Grid.Column="1" Margin="5,0,0,0"
+                    Width="60" Height="30"  Click="SubmitQuery_Click"/>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="45,0,45,45">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <utils:HeaderSuperText x:Name="UserName"
+                               Header="用户姓名" Editable="Readonly"/>
+            <Button Name="SubmitChange" Content="提交更改" Grid.Column="2" Margin="5,0,0,0"
+                    Width="60" Height="30" Click="SubmitChange_Click"/>
+        </Grid>
+        
+        
+        <utils:HeaderSuperMultiChoice x:Name="UserAuthChoice" Grid.Row="3" Margin="45"
+                                      Header="用户权限" Editable="Writeonly"/>
+        <utils:HeaderSuperMultiChoice x:Name="ManageAuthChoice" Grid.Row="3" Grid.Column="1" Margin="45"
+                                      Header="管理权限" Editable="Writeonly"/>
+        <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="4" Grid.ColumnSpan="2" Text="请谨慎对用户的权限进行修改，尤其是管理权限。"/>
+    </Grid>
+</base:BasePage>

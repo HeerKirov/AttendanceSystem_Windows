@@ -22,6 +22,7 @@ namespace AttendanceSystem_Windows.HttpConnection {
             client_safe_method["GET"] = client.Get;
             client_safe_method["DELETE"] = client.Delete;
             client_safe_method["HEAD"] = client.Head;
+            client.Request.Accept = HttpContentTypes.ApplicationJson;
         }
         public HttpConnect(string url,string method,string data=null,IDictionary<string,string> param=null,string username=null,string password = null):this() {
             this.url = url;

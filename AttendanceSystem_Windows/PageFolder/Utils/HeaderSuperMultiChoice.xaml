@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="AttendanceSystem_Windows.PageFolder.Utils.HeaderSuperMultiChoice"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AttendanceSystem_Windows.PageFolder.Utils"
+             mc:Ignorable="d" Background="White"
+             d:DesignHeight="40" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Name="MiddleColumn" Width="2*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Name="TitleBlock" VerticalAlignment="Top">header</TextBlock>
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Name="ReadScroll" VerticalScrollBarVisibility="Auto">
+                <StackPanel Name="ReadContent">
+
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer Name="WriteScroll" VerticalScrollBarVisibility="Auto">
+                <StackPanel Name="WriteContent">
+
+                </StackPanel>
+            </ScrollViewer>
+            <Button Name="EditButton" Grid.Column="1" 
+                    FontFamily="Segoe MDL2 Assets" Content="&#xE13E;" 
+                    Visibility="Collapsed" Click="EditButton_Click"/>
+            <Button Name="SaveButton" Grid.Column="1" 
+                    FontFamily="Segoe MDL2 Assets" Content="&#xE008;" 
+                    Visibility="Collapsed" Click="SaveButton_Click"/>
+        </Grid>
+    </Grid>
+</UserControl>

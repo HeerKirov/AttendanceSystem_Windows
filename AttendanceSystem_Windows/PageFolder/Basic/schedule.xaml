@@ -1,0 +1,46 @@
+﻿<base:BasePage x:Class="AttendanceSystem_Windows.PageFolder.Basic.schedule"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:base="clr-namespace:AttendanceSystem_Windows.PageFolder"
+      xmlns:local="clr-namespace:AttendanceSystem_Windows.PageFolder.Basic"
+      mc:Ignorable="d" 
+      d:DesignHeight="480" d:DesignWidth="640" Background="White"
+      Title="系统时间表">
+    <Page.Resources>
+        <Style x:Key="TextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="24" Margin="15">当前系统时间表</TextBlock>
+        <TextBlock Name="TimeRange" Grid.Row="1" Margin="30,0">执行时间:</TextBlock>
+        <Grid Grid.Row="2" Name="BG" Background="LightGray" 
+              Height="60" Margin="15,20,30,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="节次" Style="{StaticResource TextStyle}"/>
+            <TextBlock Text="开始时间" Grid.Column="1" Style="{StaticResource TextStyle}"/>
+            <TextBlock Grid.Column="2" Style="{StaticResource TextStyle}"/>
+            <TextBlock Text="结束时间" Grid.Column="3" Style="{StaticResource TextStyle}"/>
+        </Grid>
+        <ScrollViewer Grid.Row="3" Margin="15,0,30,25" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Name="TimeList" >
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</base:BasePage>
