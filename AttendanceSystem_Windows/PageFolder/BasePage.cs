@@ -45,7 +45,11 @@ namespace AttendanceSystem_Windows.PageFolder {
         /// <param name="kwargs">传递的页面参数。</param>
         /// <returns>自定义是否允许本次导航。如果你返回了false，表示取消本次导航。</returns>
         public virtual bool NavigatingToEvent(object sender, IDictionary<string,object> kwargs) {
-            return HasAuthority();
+            if (!HasAuthority()) {
+                NavigatorPage.MsgSystem.Show(null, "错误", "你没有相应的访问权限。");
+                return false;
+            }
+            return true;
         }
         /// <summary>
         /// 导航框架已经导航到本页面完毕时发生。

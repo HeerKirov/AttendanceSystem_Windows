@@ -77,5 +77,11 @@ namespace AttendanceSystem_Windows.PageFolder.Admin {
             }
         }
         private string selected;
+
+        private void UserText_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                SubmitQuery_Click(SubmitQuery, new RoutedEventArgs());
+            }
+        }
     }
 }

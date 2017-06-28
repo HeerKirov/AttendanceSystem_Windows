@@ -97,11 +97,10 @@
             </ScrollViewer>
             <StackPanel Name="OptionMenu" Grid.Row="3"  Visibility="Collapsed">
                 <Button Name="Func_Schedule" Style="{StaticResource FunctionMenuButton}" Click="Func_Schedule_Click">系统时间表</Button>
-                <Button Name="Func_Classrooms" Style="{StaticResource FunctionMenuButton}">查询教室列表</Button>
                 <Separator Background="LightBlue"/>
-                <Button Name="Func_Safety" Style="{StaticResource FunctionMenuButton}">安全设置</Button>
-                <Button Name="Func_ChangeUser" Style="{StaticResource FunctionMenuButton}">切换用户</Button>
-                <Button Name="Func_Exit" Style="{StaticResource FunctionMenuButton}">退出</Button>
+                <Button Name="Func_Safety" Style="{StaticResource FunctionMenuButton}" Click="Func_Safety_Click">安全设置</Button>
+                <Button Name="Func_ChangeUser" Style="{StaticResource FunctionMenuButton}" Click="Func_ChangeUser_Click">切换用户</Button>
+                <Button Name="Func_Exit" Style="{StaticResource FunctionMenuButton}" Click="Func_Exit_Click">退出</Button>
             </StackPanel>
             <Button Name="OptionBtn" Content="功能" Style="{StaticResource FunctionListButton}"
                     Grid.Row="4" Click="OptionBtn_Click">

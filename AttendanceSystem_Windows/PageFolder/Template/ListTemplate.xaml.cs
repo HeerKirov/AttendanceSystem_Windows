@@ -127,79 +127,63 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
             var search = SearchBox.Text;
             if (search == "") search = null;
             Task.Run(() => {
-                var res = new Response[args.urls.Length];
-                for (int i = 0; i < res.Length; ++i) res[i] = args.api[args.urls[i].url].List(args.getFilter(), getorderings(), search);
-                var flag = true;
-                foreach (var i in res)
-                    if (!i.statuslike("2**")) {
-                        flag = false;
-                        break;
-                    }
-                if (flag) {
-                    var datas = res.map(t => t.list) as JArray[];
-                    Dispatcher.Invoke(() => {
-                        //var Items = this.Items;
-                        var brush_white = new SolidColorBrush(Colors.White);
-                        var brush_gray = new SolidColorBrush(Colors.LightGray);
-                        Items.Clear();
-                        int index = 0;
-                        foreach(var data in datas[0]) {
-                            //构造每一个条目的记录。
-                            var row = new ListTemplateItem();
-                            var objects = new UIElement[args.columns.Count];
-                            for(int i = 0; i < objects.Length; ++i) {//构造一条记录的每一个项。
-                                var c = args.columns[i];
-                                
-                                var item = new TextBlock();
-                                item.HorizontalAlignment = HorizontalAlignment.Left;
-                                item.VerticalAlignment = VerticalAlignment.Center;
-                                item.FontSize = c.fontsize ?? args.fontsize;
-                                item.Margin = c.margin ?? args.margin;
-                                //首先过滤名称，检查是主键内容还是副URL的内容。
-                                JToken jdata = null;
-                                if (c.name.Contains("/")) {//这表示使用斜线分割的url's name和json's name。
-                                    var sp = c.name.Split('/');
-                                    var url_index = args.urls.firstAt(u => u.name == sp[0]);//得知这是第几条URL。
-                                    if (url_index < 0) throw new Exception("找不到对应的URL。Column的name书写错误。");
-                                    var second_url = args.urls[url_index];//获得副url的引用。
-
-                                    foreach(var seconddata in datas[url_index]) {
-                                        if (seconddata[second_url.primarykey].ToString() == data[args.urls[0].primarykey].ToString()) {//这个标志相当于二者对等。
-                                            jdata = seconddata[sp[1]];
-                                            break;
-                                        }
-                                    }
-                                }else {//这表示是主键的内容。
-                                    jdata = data[c.name];
-                                }
-                                //按类型创建UI内容。
-                                if (c.type == "text") item.Text = jdata.ToString();
-                                else if (c.type == "custom") item.Text = (c.data as Func<JToken, string>)(jdata);
-                                else if (c.type == "choice") item.Text = (c.data as IDictionary<string, string>)[jdata.ToString()];
-                                if (c.customaction != null) {
-                                    item.PreviewMouseLeftButtonDown += (s, e) => {
-                                        c.customaction(data);
-                                    };
-                                }
-                                if (c.hyperlink != null){
-                                    var goal = c.hyperlink(data);//局部闭包
-                                    item.PreviewMouseLeftButtonDown += (s, e) => {//点击超链接事件。
-                                        NavigatorPage.NavigatorGoto(goal.Item1, goal.Item2);
-                                    };
-                                }
-                                objects[i] = item;
-                            }
-                            row.SetChildren(gridlength,objects);
-                            row.Background = index % 2 == 0 ? brush_gray : brush_white;
-                            //itemlist[index] = row;
-                            Items.Add(row);
-                            ++index;
-                        }
-                    });
+                var res = args.api[args.url].List(args.getFilter(), getorderings(), search);
+                if (res.statuslike("2**")) {
+                    var datas = res.list;
+                    Dispatcher.Invoke(() => update_data(datas));
                 }else {//抛出错误，存在不能正确连接的url。
-                    NavigatorPage.MsgSystem.Show(null, "错误", res[0].content);
+                    NavigatorPage.MsgSystem.Show(null, "错误", res.content);
                 }
             });
+        }
+        /// <summary>
+        /// 通过主动提供参数更新的方式来更新列表。
+        /// </summary>
+        /// <param name="datas"></param>
+        public void UpdateData(JArray datas) {
+            update_data(datas);
+        }
+
+        private void update_data(JArray datas) {
+            var brush_white = new SolidColorBrush(Colors.White);
+            var brush_gray = new SolidColorBrush(Colors.LightGray);
+            Items.Clear();
+            int index = 0;
+            foreach (var data in datas) {
+                //构造每一个条目的记录。
+                var row = new ListTemplateItem();
+                var objects = new UIElement[args.columns.Count];
+                for (int i = 0; i < objects.Length; ++i) {//构造一条记录的每一个项。
+                    var c = args.columns[i];
+                    var item = new TextBlock();
+                    item.HorizontalAlignment = HorizontalAlignment.Left;
+                    item.VerticalAlignment = VerticalAlignment.Center;
+                    item.FontSize = c.fontsize ?? args.fontsize;
+                    item.Margin = c.margin ?? args.margin;
+                    JToken jdata = data[c.name];
+                    //按类型创建UI内容。
+                    if (c.type == "text") item.Text = jdata.ToString();
+                    else if (c.type == "custom") item.Text = (c.data as Func<JToken, string>)(jdata);
+                    else if (c.type == "choice") item.Text = (c.data as IDictionary<string, string>)[jdata.ToString()];
+                    if (c.customaction != null) {
+                        item.PreviewMouseLeftButtonDown += (s, e) => {
+                            c.customaction(data);
+                        };
+                    }
+                    if (c.hyperlink != null) {
+                        var goal = c.hyperlink(data);//局部闭包
+                        item.PreviewMouseLeftButtonDown += (s, e) => {//点击超链接事件。
+                            NavigatorPage.NavigatorGoto(goal.Item1, goal.Item2);
+                        };
+                    }
+                    objects[i] = item;
+                }
+                row.SetChildren(gridlength, objects);
+                row.Background = index % 2 == 0 ? brush_gray : brush_white;
+                //itemlist[index] = row;
+                Items.Add(row);
+                ++index;
+            }
         }
 
         private void SearhcButton_Click(object sender, RoutedEventArgs e) {
@@ -230,7 +214,7 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
     public class ListArgs {
         public ListArgs(string URL,RestApi Api, string Caption, 
             bool Searchable = false, double FontSize = 18, Thickness Margin = new Thickness(), bool Createable = false, CreateArgs Createargs = null) {
-            urls = new iURL[] { new iURL(URL) };
+            url = URL;
             api = Api;
             caption = Caption;
             fontsize = FontSize;
@@ -240,22 +224,11 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
             createable = Createable;
             createargs = Createargs;
         }
-        public ListArgs(iURL[] URL, RestApi Api, string Caption,
-            bool Searchable = false, double FontSize = 18, Thickness Margin = new Thickness(), bool Createable = false, CreateArgs Createargs = null) {
-            urls = URL;
-            api = Api;
-            caption = Caption;
-            fontsize = FontSize;
-            margin = Margin;
-            searchable = Searchable;
-            columns = new List<Column>();
-            createable = Createable;
-            createargs = Createargs;
-        }
+
         /// <summary>
         /// url。
         /// </summary>
-        public iURL[] urls;
+        public string url;
         /// <summary>
         /// api类。
         /// </summary>
@@ -290,19 +263,6 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
         /// </summary>
         public List<Column> columns;
 
-        public struct iURL {
-            public string url;
-            public string name;
-            public string primarykey;
-            public iURL(string url, string name = null, string primarykey = null) {
-                this.url = url;
-                this.name = name;
-                this.primarykey = primarykey;
-            }
-            public override string ToString() {
-                return url;
-            }
-        }
         /// <summary>
         /// 为过滤器追加一个条件。
         /// </summary>

@@ -1,0 +1,30 @@
+﻿<base:BasePage x:Class="AttendanceSystem_Windows.PageFolder.Student.self_coursetable"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AttendanceSystem_Windows.PageFolder.Student"
+      xmlns:base="clr-namespace:AttendanceSystem_Windows.PageFolder"
+      xmlns:utils="clr-namespace:AttendanceSystem_Windows.PageFolder.Utils"
+      mc:Ignorable="d" Background="White"
+      d:DesignHeight="480" d:DesignWidth="640"
+      Title="课程表">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="30">
+            <utils:HeaderSuperText Width="100"
+                x:Name="YearChoice" Header="学年"
+                Editable="Writeonly"/>
+            <utils:HeaderSuperText Width="80" ColumnWidth="1.2"
+                x:Name="TermChoice" Header="学期"
+                Editable="Writeonly"/>
+            <utils:HeaderSuperText Width="90" ColumnWidth="1.2"
+                x:Name="WeekChoice" Header="周数"
+                Editable="Writeonly"/>
+        </StackPanel>
+    </Grid>
+</base:BasePage>

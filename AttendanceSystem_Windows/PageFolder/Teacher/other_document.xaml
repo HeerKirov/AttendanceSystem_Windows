@@ -1,0 +1,20 @@
+﻿<base:BasePage x:Class="AttendanceSystem_Windows.PageFolder.Teacher.other_document"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AttendanceSystem_Windows.PageFolder.Teacher"
+      xmlns:base="clr-namespace:AttendanceSystem_Windows.PageFolder"
+      xmlns:utils="clr-namespace:AttendanceSystem_Windows.PageFolder.Utils"
+      mc:Ignorable="d" 
+      d:DesignHeight="480" d:DesignWidth="640" Background="White"
+      Title="教师个人资料">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="ContentGrid"/>
+        <Grid Name="ListGrid" Grid.Column="1"/>
+    </Grid>
+</base:BasePage>

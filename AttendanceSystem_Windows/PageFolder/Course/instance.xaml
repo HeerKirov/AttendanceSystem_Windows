@@ -1,0 +1,20 @@
+﻿<base:BasePage x:Class="AttendanceSystem_Windows.PageFolder.Course.instance"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AttendanceSystem_Windows.PageFolder.Course"
+      xmlns:base="clr-namespace:AttendanceSystem_Windows.PageFolder"
+      mc:Ignorable="d" Background="White"
+      d:DesignHeight="480" d:DesignWidth="640"
+      Title="课程详情页">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Name="ContentGrid"/>
+        <Grid Grid.Row="1" Name="ListGrid"/>
+    </Grid>
+</base:BasePage>

@@ -25,8 +25,9 @@ namespace AttendanceSystem_Windows {
         public static MainWindow reference { get; private set; }
         public  MainWindow() {
             InitializeComponent();
+            OptionClass.Get().ReadFromConfig();
             reference = this;
-            Navigator.Navigate(LoginPage.Get());
+            setContent(LoginPage.Get());
         }
         /// <summary>
         /// 给出次级标题，并设置窗口标题。
@@ -34,6 +35,10 @@ namespace AttendanceSystem_Windows {
         /// <param name="subtitle"></param>
         public void setTitle(string subtitle) {
             Title = "Attendance System Development0.001" + (subtitle != null ? " - " : "") + subtitle;
+        }
+
+        public void setContent(Page content) {
+            Navigator.NavigationService.Content = content;
         }
     }
 }

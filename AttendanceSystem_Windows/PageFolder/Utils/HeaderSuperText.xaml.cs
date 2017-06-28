@@ -168,7 +168,7 @@ namespace AttendanceSystem_Windows.PageFolder.Utils {
                 foreach(var i in MultiText) {
                     if (first) first = false;
                     else sb.Append(",");
-                    sb.Append($@" ""${i}"" ");
+                    sb.Append($@" ""{i}"" ");
                 }
                 sb.Append("]");
                 return sb.ToString();

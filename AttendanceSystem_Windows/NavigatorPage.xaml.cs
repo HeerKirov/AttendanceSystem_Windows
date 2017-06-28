@@ -21,6 +21,7 @@ namespace AttendanceSystem_Windows {
     /// NavigatorPage.xaml 的交互逻辑
     /// </summary>
     public partial class NavigatorPage : Page {
+        public static NavigatorPage New() => reference = new NavigatorPage();
         public static NavigatorPage Get() => reference == null ? reference = new NavigatorPage() : reference;
         public static MessageSystem MsgSystem => Get().msgSys;
         public static bool NavigatorGoto(string name, IDictionary<string,object> kwargs = null) {
@@ -68,6 +69,7 @@ namespace AttendanceSystem_Windows {
                     }, new FunctionSystem.FunctionTemplate[] {
                         new FunctionSystem.FunctionTemplate("document","管理员资料","admin-self-document",null,u=>u.HasAuthorityOrRoot(Authority.Admin)),
                         new FunctionSystem.FunctionTemplate("root-auth","全权限管理","admin-root-auth",null,u=>u.HasAuthority(Authority.Root)),
+                        new FunctionSystem.FunctionTemplate("password","修改密码","admin-password",null,u=>u.HasAuthorityOrRoot(Authority.UserManage)),
                         new FunctionSystem.FunctionTemplate("admin-schedule","时间表管理","admin-admin-schedule",null,u=>u.HasAuthorityOrRoot(Authority.Admin)),
                         new FunctionSystem.FunctionTemplate("user-list","用户管理","admin-user-list",null,u=>u.HasAuthorityOrRoot(Authority.UserManage)),
                         new FunctionSystem.FunctionTemplate("student-list","学生管理","admin-student-list",null,u=>u.HasAuthorityOrRoot(Authority.StudentManage)),
@@ -115,6 +117,27 @@ namespace AttendanceSystem_Windows {
 
         private void Func_Schedule_Click(object sender, RoutedEventArgs e) {
             frameSys.Goto("basic-schedule");
+        }
+
+        private void Func_Safety_Click(object sender, RoutedEventArgs e) {
+            frameSys.Goto("basic-safety");
+        }
+
+        private void Func_ChangeUser_Click(object sender, RoutedEventArgs e) {
+            MsgSystem.Show((s,r) => {
+                if (r.CheckIndex == 0) {
+                    MainWindow.reference.setContent(LoginPage.Get());
+                    User.Get().authentication = null;
+                }
+            }, "确认", "确认要退出登录？", buttonname: new string[] { "确认", "取消" });
+        }
+
+        private void Func_Exit_Click(object sender, RoutedEventArgs e) {
+            MsgSystem.Show((s, r) => {
+                if (r.CheckIndex == 0) {
+                    MainWindow.reference.Close();
+                }
+            }, "确认", "确认要退出？", buttonname: new string[] { "确认", "取消" });
         }
     }
     /// <summary>

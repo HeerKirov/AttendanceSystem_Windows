@@ -84,7 +84,6 @@ namespace AttendanceSystem_Windows.Services {
             con.authentication = authentication;
             con.Connect();
             if (con.status == HttpStatusCode.OK) {
-                authority.Clear();
                 JObject jo = JObject.Parse(con.response);
                 if (jo["relation"] != null) {
                     var relation = jo["relation"].ToString();
@@ -159,5 +158,15 @@ namespace AttendanceSystem_Windows.Services {
         Sub,
         Parent,
         Manager
+    }
+
+    public class AttendanceState {
+        public static readonly IDictionary<string, string> attendance_state = new Dictionary<string, string>() {
+            { "NONE","未到"},
+            { "LATE","迟到"},
+            { "LEAVE","早退"},
+            { "ABSENT","缺勤"},
+            { "NORMAL","正常"},
+        };
     }
 }

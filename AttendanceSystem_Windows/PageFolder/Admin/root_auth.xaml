@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <utils:HeaderSuperText x:Name="UserText"
+            <utils:HeaderSuperText x:Name="UserText" KeyDown="UserText_KeyDown"
                                Header="要查阅的用户" Editable="Writeonly"/>
             <Button Name="SubmitQuery" Content="查询" Grid.Column="1" Margin="5,0,0,0"
                     Width="60" Height="30"  Click="SubmitQuery_Click"/>

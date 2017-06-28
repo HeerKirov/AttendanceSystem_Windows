@@ -24,13 +24,23 @@ namespace AttendanceSystem_Windows {
     /// LoginPage.xaml 的交互逻辑
     /// </summary>
     public partial class LoginPage : Page {
-        public static LoginPage Get() => reference == null ? reference = new LoginPage() : reference;
-        private static LoginPage reference = null;
+        public static LoginPage Get() => new LoginPage();
 
-        private LoginPage() {
+        public LoginPage() {
             InitializeComponent();
             CheckConnection();
-            
+            Server.Submit += (s, e) => {
+                OptionClass.Get().ServerURL = e.text;
+                OptionClass.Get().WriteToConfig();
+                return e.text;
+            };
+            RememberPasswd.IsChecked = OptionClass.Get().RememberPasswd;
+            AutoLogin.IsChecked = OptionClass.Get().AutoLogin;
+            UsernameTxt.Text = OptionClass.Get().Username;
+            if (OptionClass.Get().RememberPasswd) PasswordTxt.Password = OptionClass.Get().Password;
+            if (OptionClass.Get().AutoLogin) {
+                DoLogin();
+            }
         }
         /// <summary>
         /// 检执行UI操作，查对服务器的链接。
@@ -69,6 +79,15 @@ namespace AttendanceSystem_Windows {
                 Content.Dispatcher.Invoke(() => {
                     if (code == HttpStatusCode.OK) {
                         //登陆成功
+                        //需要将相关信息写入option。
+                        //仅在登陆成功时写入记住密码/自动登录/用户名/密码。
+                        option.Username = username;
+                        option.RememberPasswd = RememberPasswd.IsChecked ?? false;
+                        if (option.RememberPasswd) {
+                            option.AutoLogin = AutoLogin.IsChecked ?? false;
+                            option.Password = password;
+                        }
+                        option.WriteToConfig();
                         User user = User.Get();
                         user.authentication = new Auth(con.authentication.username, con.authentication.password);
                         NavigateToMain();
@@ -105,7 +124,7 @@ namespace AttendanceSystem_Windows {
         }
 
         private void NavigateToMain() {
-            NavigationService.Navigate(NavigatorPage.Get());
+            MainWindow.reference.setContent(NavigatorPage.New());
         }
 
         public enum ContentStatus {

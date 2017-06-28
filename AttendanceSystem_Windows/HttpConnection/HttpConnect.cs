@@ -34,6 +34,8 @@ namespace AttendanceSystem_Windows.HttpConnection {
 
         public void Connect() {
             try {
+                while (!locks) { }
+                locks = false;
                 HttpResponse res = null;
                 if (client_method.Keys.Contains(method)) res = client_method[method](url, content, HttpContentTypes.ApplicationJson, null);
                 else if (client_safe_method.Keys.Contains(method)) res = client_safe_method[method](url + getparam(), null);
@@ -48,8 +50,12 @@ namespace AttendanceSystem_Windows.HttpConnection {
                     content = "";
                     param.Clear();
                 }
+                locks = true;
             }
         }
+
+        private bool locks=true;
+
         public void Connect(string url=null,string method=null, string data = null, IDictionary<string, string> param = null) {
             this.url = url ?? this.url;
             this.method = method ?? this.method;

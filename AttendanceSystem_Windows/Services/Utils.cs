@@ -72,6 +72,11 @@ namespace AttendanceSystem_Windows.Services {
             foreach (var k in th) action(k);
         }
 
-        
+        public static T[] append<T>(this T[] th,T n) {
+            var ans = new T[th.Length + 1];
+            for (int i = 0; i < th.Length; ++i) ans[i] = th[i];
+            ans[ans.Length - 1] = n;
+            return ans;
+        }
     }
 }

@@ -80,6 +80,9 @@
     <Compile Include="PageFolder\Admin\class_list.xaml.cs">
       <DependentUpon>class_list.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\Admin\password.xaml.cs">
+      <DependentUpon>password.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\Admin\root_auth.xaml.cs">
       <DependentUpon>root_auth.xaml</DependentUpon>
     </Compile>
@@ -102,18 +105,106 @@
       <DependentUpon>user_list.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\BasePage.cs" />
+    <Compile Include="PageFolder\Basic\manager_document.xaml.cs">
+      <DependentUpon>manager_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Basic\other_document.xaml.cs">
+      <DependentUpon>other_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Basic\safety.xaml.cs">
+      <DependentUpon>safety.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\Basic\schedule.xaml.cs">
       <DependentUpon>schedule.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\Basic\schedule_timeitem.xaml.cs">
       <DependentUpon>schedule_timeitem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\Basic\self_document.xaml.cs">
+      <DependentUpon>self_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Classroom\instance.xaml.cs">
+      <DependentUpon>instance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Classroom\modify.xaml.cs">
+      <DependentUpon>modify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Class\detail.xaml.cs">
+      <DependentUpon>detail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Class\instance.xaml.cs">
+      <DependentUpon>instance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Class\modify.xaml.cs">
+      <DependentUpon>modify.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\ContentFactory.cs" />
+    <Compile Include="PageFolder\Course\detail.xaml.cs">
+      <DependentUpon>detail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Course\instance.xaml.cs">
+      <DependentUpon>instance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Course\modify.xaml.cs">
+      <DependentUpon>modify.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\EditAbleStatus.cs" />
+    <Compile Include="PageFolder\Generalmanager\class_list.xaml.cs">
+      <DependentUpon>class_list.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Generalmanager\course_list.xaml.cs">
+      <DependentUpon>course_list.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Instructor\manager_document.xaml.cs">
+      <DependentUpon>manager_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Instructor\other_document.xaml.cs">
+      <DependentUpon>other_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Instructor\self_document.xaml.cs">
+      <DependentUpon>self_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Office\self_instructor.xaml.cs">
+      <DependentUpon>self_instructor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Office\self_document.xaml.cs">
+      <DependentUpon>self_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Office\self_student.xaml.cs">
+      <DependentUpon>self_student.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Office\self_teacher.xaml.cs">
+      <DependentUpon>self_teacher.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\PageFactory.cs" />
+    <Compile Include="PageFolder\Student\manager_document.xaml.cs">
+      <DependentUpon>manager_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Student\other_document.xaml.cs">
+      <DependentUpon>other_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Student\self_attendances.xaml.cs">
+      <DependentUpon>self_attendances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Student\self_coursetable.xaml.cs">
+      <DependentUpon>self_coursetable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Student\self_document.xaml.cs">
+      <DependentUpon>self_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Teacher\manager_document.xaml.cs">
+      <DependentUpon>manager_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Teacher\other_document.xaml.cs">
+      <DependentUpon>other_document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\Teacher\self_document.xaml.cs">
+      <DependentUpon>self_document.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\Template\CreateTemplate.xaml.cs">
       <DependentUpon>CreateTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\Template\CustomUtils.cs" />
     <Compile Include="PageFolder\Template\InstanceTemplate.xaml.cs">
       <DependentUpon>InstanceTemplate.xaml</DependentUpon>
     </Compile>
@@ -184,6 +275,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="PageFolder\Admin\password.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PageFolder\Admin\root_auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +307,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\Basic\manager_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Basic\other_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Basic\safety.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PageFolder\Basic\schedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +326,110 @@
     <Page Include="PageFolder\Basic\schedule_timeitem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\Basic\self_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Classroom\instance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Classroom\modify.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Class\detail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Class\instance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Class\modify.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Course\detail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\Course\instance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\Course\modify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\Generalmanager\class_list.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Generalmanager\course_list.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Instructor\manager_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Instructor\other_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Instructor\self_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Office\self_instructor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Office\self_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Office\self_student.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Office\self_teacher.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Student\manager_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Student\other_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Student\self_attendances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\Student\self_coursetable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\Student\self_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Teacher\manager_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Teacher\other_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageFolder\Teacher\self_document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PageFolder\Template\CreateTemplate.xaml">
       <SubType>Designer</SubType>
@@ -292,15 +503,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PageFolder\Classroom\" />
-    <Folder Include="PageFolder\Classs\" />
-    <Folder Include="PageFolder\Course\" />
-    <Folder Include="PageFolder\Instructor\" />
-    <Folder Include="PageFolder\Office\" />
-    <Folder Include="PageFolder\Student\" />
-    <Folder Include="PageFolder\Teacher\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

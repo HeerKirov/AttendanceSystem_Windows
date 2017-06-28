@@ -61,6 +61,7 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
             itemlist = new object[args.items.Count];
             DeleteButton.Visibility = args.deleteable ? Visibility.Visible : Visibility.Collapsed;
             SaveButton.Visibility = args.onlywrite ? Visibility.Visible : Visibility.Collapsed;
+            ConstructCustomButton();
             for(int i = 0; i < args.items.Count; ++i) {
                 var cachei = i;
                 var thi = args.items[i];
@@ -155,6 +156,24 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
                         });
                         return e.value;
                     };
+                }
+            }
+        }
+
+        public void ConstructCustomButton() {
+            //首先清除自定义按钮。
+            CustomButtonStack.Children.Clear();
+            //构造自定义按钮。
+            if (args.custombutton != null) {
+                foreach (var i in args.custombutton) {
+                    var btn = new Button();
+                    var action = i.action;
+                    btn.Style = Resources["FuncButtonStyle"] as Style;
+                    btn.FontFamily = new FontFamily(i.fontfamily);
+                    btn.Content = i.title;
+                    btn.ToolTip = i.tips;
+                    btn.Click += (s, e) => action();
+                    CustomButtonStack.Children.Add(btn);
                 }
             }
         }
@@ -263,7 +282,8 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
     public class InstanceArgs {
         public InstanceArgs(string URL, string InstanceId, RestApi Api, string Caption, 
             double ColumnWidth = 3, double FontSize = 18, Thickness Margin = new Thickness(), 
-            bool Deleteable = true, bool Onlywrite = false, Action Deleteaction = null) {
+            bool Deleteable = true, bool Onlywrite = false, Action Deleteaction = null,
+            CustomButton[] Custombutton = null) {
             url = URL;
             instance = InstanceId;
             api = Api;
@@ -275,6 +295,7 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
             deleteable = Deleteable;
             onlywrite = Onlywrite;
             deleteable = Deleteable;
+            custombutton = Custombutton;
         }
         /// <summary>
         /// url与instance。
@@ -316,6 +337,10 @@ namespace AttendanceSystem_Windows.PageFolder.Template {
         /// 自定义删除操作的动作。
         /// </summary>
         public Action deleteaction;
+        /// <summary>
+        /// 自定义的按钮序列。
+        /// </summary>
+        public CustomButton[] custombutton;
 
         public struct Item {
             /* 项目类型

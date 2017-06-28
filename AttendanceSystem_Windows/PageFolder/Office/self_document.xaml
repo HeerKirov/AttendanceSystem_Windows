@@ -1,0 +1,15 @@
+﻿<base:BasePage x:Class="AttendanceSystem_Windows.PageFolder.Office.self_document"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AttendanceSystem_Windows.PageFolder.Office"
+      xmlns:base="clr-namespace:AttendanceSystem_Windows.PageFolder"
+      xmlns:utils="clr-namespace:AttendanceSystem_Windows.PageFolder.Utils"
+      mc:Ignorable="d" 
+      d:DesignHeight="480" d:DesignWidth="640" Background="White"
+      Title="教务处个人资料">
+    <Grid Name="ContentGrid">
+
+    </Grid>
+</base:BasePage>

@@ -22,6 +22,7 @@
                 Content="提交"
                 Margin="50,25" 
                 HorizontalAlignment="Right"
-                Click="SubmitButton_Click"/>
+                Click="SubmitButton_Click"
+                ToolTip="提交"/>
     </Grid>
 </UserControl>

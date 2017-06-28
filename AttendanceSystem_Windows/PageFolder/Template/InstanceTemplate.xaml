@@ -7,6 +7,14 @@
              xmlns:utils="clr-namespace:AttendanceSystem_Windows.PageFolder.Utils"
              mc:Ignorable="d" Background="White"
              d:DesignHeight="480" d:DesignWidth="640">
+    <UserControl.Resources>
+        <Style x:Key="FuncButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -18,13 +26,14 @@
         </Grid.ColumnDefinitions>
         <TextBlock Name="CaptionText" Text="caption" FontSize="24" Margin="15" Grid.ColumnSpan="2"/>
         <StackPanel Grid.Column="1" Margin="0,15,15,15" Orientation="Horizontal">
-            <Button Name="SaveButton"
-                Width="30" Height="30" BorderThickness="0"
-                FontFamily="Segoe MDL2 Assets" Content="&#xE105;"
+            <StackPanel Name="CustomButtonStack" Orientation="Horizontal">
+                
+            </StackPanel>
+            <Button Name="SaveButton" Style="{StaticResource FuncButtonStyle}" 
+                    Content="&#xE105;" ToolTip="保存"
                 Visibility="Visible" Click="SaveButton_Click"/>
-            <Button Name="DeleteButton" 
-                Width="30" Height="30" BorderThickness="0"
-                FontFamily="Segoe MDL2 Assets" Content="&#xE107;"
+            <Button Name="DeleteButton" Style="{StaticResource FuncButtonStyle}" 
+                    Content="&#xE107;" ToolTip="删除"
                 Visibility="Visible" Click="DeleteButton_Click"/>
         </StackPanel>
         

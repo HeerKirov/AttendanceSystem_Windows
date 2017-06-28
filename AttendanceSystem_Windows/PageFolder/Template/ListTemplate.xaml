@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Name="CaptionText" Text="caption" FontSize="24"/>
             <Button Name="CreateButton" Grid.Column="2"
-                Width="30" Height="30" BorderThickness="0"
+                Width="30" Height="30" BorderThickness="0" ToolTip="添加"
                 FontFamily="Segoe MDL2 Assets" Content="&#xE109;"
                 Visibility="Visible" Click="CreateButton_Click"/>
         </Grid>
